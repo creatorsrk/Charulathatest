@@ -69,11 +69,29 @@ function createPhotoItem(filename, description) {
     const photoItem = document.createElement('div');
     photoItem.className = 'photo-item';
     
+    // Create a protected image structure
     photoItem.innerHTML = `
-        <img src="assets/photos/${filename}" 
-             alt="${description}" 
-             loading="lazy"
-             onerror="handleImageError(this);">
+        <div class="image-container" style="position: relative; overflow: hidden;">
+            <img src="assets/photos/${filename}" 
+                 alt="${description}" 
+                 loading="lazy"
+                 draggable="false"
+                 oncontextmenu="return false;"
+                 onselectstart="return false;"
+                 ondragstart="return false;"
+                 style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; pointer-events: none;"
+                 onerror="handleImageError(this);">
+            <div class="image-overlay" style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: transparent;
+                z-index: 5;
+                pointer-events: auto;
+            "></div>
+        </div>
         <div class="photo-placeholder" style="display: none;">
             📸 ${description}
         </div>
@@ -81,6 +99,17 @@ function createPhotoItem(filename, description) {
             <p>${description}</p>
         </div>
     `;
+    
+    // Add additional protection to the photo item
+    photoItem.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    photoItem.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
     
     return photoItem;
 }

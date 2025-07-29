@@ -16,6 +16,65 @@ body {
     font-size: 1.1rem;
 }
 
+/* Image Protection Styles */
+img {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none !important;
+    -moz-user-drag: none !important;
+    -o-user-drag: none !important;
+    user-drag: none !important;
+    -webkit-touch-callout: none !important;
+    pointer-events: none;
+}
+
+/* Gallery and photo specific protection */
+.photo-scroll img, .gallery-grid img, .gallery-item {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+/* Disable text selection on protected areas */
+.photo-scroll, .gallery-grid, .gallery-item {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* Disable highlighting */
+::selection {
+    background: transparent;
+}
+
+::-moz-selection {
+    background: transparent;
+}
+
+/* Hide content when printing */
+@media print {
+    .photo-scroll, .gallery-grid, img {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
+/* Disable right-click context menu styling */
+.no-context-menu {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
